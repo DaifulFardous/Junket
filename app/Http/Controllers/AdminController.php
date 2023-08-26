@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Blog ;
+use App\Models\Feed ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -38,5 +40,14 @@ class AdminController extends Controller
         'created_at'=> now(),
        ]);
        return redirect('admin/login')->with('message','Admin created successfully, you can login now');
+    }
+
+    public function get_blog_list(){
+        $blogs = Blog::all();
+        return view('admin.blogList', compact('blogs')) ;
+    }
+    public function get_feed_list(){
+        $feeds = Feed::all();
+        return view('admin.feedList', compact('feeds')) ;
     }
 }

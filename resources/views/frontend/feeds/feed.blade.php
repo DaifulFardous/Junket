@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="common_bannner_text">
-                    <h2>Blogs</h2>
+                    <h2>News Feed</h2>
                     <ul>
                         <li><a href="{{ url('/') }}">Home</a></li>
-                        <li><span><i class="fas fa-circle"></i></span>Blogs</li>
+                        <li><span><i class="fas fa-circle"></i></span>News Feed</li>
                     </ul>
                 </div>
             </div>
@@ -20,34 +20,34 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="section_heading_center">
-                    <h2>Latest travel Blogs</h2>
+                    <h2>Latest News Feeds</h2>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="row">
-                @foreach ($blogs as $blog)
+                @foreach ($feeds as $feed)
                     <div class="col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="news_four_card">
                             <div class="news_four_card_img">
                                 <a href="news-details.html">
-                                    <img src="{{ asset('assets/uploads/blogs/'.$blog->image) }}" style="height: 240px; width: 460px" alt="img">
+                                    <img src="{{ asset('assets/uploads/feeds/'.$feed->image) }}" style="height: 240px; width: 460px" alt="img">
                                 </a>
                             </div>
                             <div class="new_four_card_lists">
                                 <ul>
-                                    <li>Created by- {{ $blog->group_name }} <i class="fas fa-circle"></i></li>
+                                    <li>Created by- {{ $feed->group_name }} <i class="fas fa-circle"></i></li>
                                 </ul>
                             </div>
                             <div class="news_four_card_conrent">
                                 <div class="new_four_card_lists">
                                     <ul>
-                                        <li>Date: {{ $blog->created_at }} <i class="fas fa-circle"></i></li>
+                                        <li>{{ $feed->created_at }} <i class="fas fa-circle"></i></li>
                                     </ul>
                                 </div>
-                                <h3><a href="news-details.html"> {{ $blog->heading }}</a></h3>
-                                    <p>{{ $blog->short_description }}</p>
-                                <a href="{{ url('blog/details/'.$blog->id) }}">Read more...</a>
+                                <h3><a href="news-details.html"> {{ $feed->heading }}</a></h3>
+                                    <p>{{ $feed->short_description }}</p>
+                                <a href="{{ url('feed/details/'.$feed->id) }}">Read more...</a>
                             </div>
                         </div>
                     </div>

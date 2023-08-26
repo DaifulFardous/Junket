@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Junket Admin Panel</title>
+    <title>Junket Group Admin Panel</title>
 
     <!-- Core CSS - Include with every page -->
     <link href="{{ asset('admin') }}/css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Junket Admin</a>
+                <a class="navbar-brand" href="index.html">Junket Group Admin</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -41,11 +41,11 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span>{{ Auth::guard('admin')->user()->name }}</span>  <i class="fa fa-caret-down"></i>
+                        <span>{{ Auth::guard('group')->user()->group_name }}</span>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li class="divider"></li>
-                        <li><a href="{{ url('admin/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{{ url('group/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -69,22 +69,28 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="{{ url('group/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="{{ url("admin/blog_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Blog Lists</a>
-                        </li>
-                        <li>
-                            <a href="{{ url("admin/feed_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Feed Lists</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Blogs<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="{{ url("group/blog/add") }}">Add Blog</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                <a href="{{ url('group/blog/list/' . Auth::guard('group')->user()->group_name) }}">Blog List</a><br>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Feed<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{ url("group/feed/add") }}">Add Feed</a><br>
+                                </li>
+                                <li>
+                                <a href="{{ url('group/feed/list/' . Auth::guard('group')->user()->group_name) }}">Feed List</a><br>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -167,23 +173,16 @@
         </nav>
 
         <div id="page-wrapper">
-            <div id="dataContainer">
-                <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="page-header">@yield('header')</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 style="text-align: center">Welcome to Junket Admin Panel</h3>
-                </div>
-            </div>
-            <!-- /.row -->
+            @yield('content')
         </div>
-        <!-- /#page-wrapper --></div>
-            
+        <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->

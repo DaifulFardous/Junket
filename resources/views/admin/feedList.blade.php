@@ -18,6 +18,7 @@
 
     <!-- SB Admin CSS - Include with every page -->
     <link href="{{ asset('admin') }}/css/sb-admin.css" rel="stylesheet">
+    
 
 </head>
 
@@ -75,7 +76,7 @@
                             <a href="{{ url("admin/blog_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Blog Lists</a>
                         </li>
                         <li>
-                            <a href="{{ url("admin/feed_list") }}" id="blog_list"><i class="fa fa-dashboard fa-fw"></i> Feed Lists</a>
+                            <a href="{{ url("admin/feed_list") }}" id="feed_list"><i class="fa fa-dashboard fa-fw"></i> Feed Lists</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -177,8 +178,54 @@
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 style="text-align: center">Welcome to Junket Admin Panel</h3>
+                    <h3 style="text-align: center">Feed Lists</h3>
                 </div>
+                <div class="container" style=".container {
+  padding: 2rem 0rem;
+}
+
+h4 {
+  margin: 2rem 0rem 1rem;
+}
+
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+}">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Heading</th>
+            <th scope="col">Short Description</th>
+            <th scope="col">image</th>
+            <th scope="col">Group Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($feeds as $feed)
+          <tr>
+            <th scope="row">{{ $feed->heading }}</th>
+            <td>{{ $feed->short_description }}</td>
+            <td>{{ $feed->image }}</td>
+            <td>{{ $feed->group_name }}</td>
+            <td>{{ $feed->status }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" onclick="window.location.href='{{ url("admin/feedEdit/$feed->id") }}'">Edit</button>
+              <button type="button" class="btn btn-success" onclick="window.location.href='{{ url("admin/feed/delete/$feed->id") }}'">Delete</button>
+            <button type="button" class="btn btn-danger" onclick="window.location.href='{{ url("admin/feed/status/$feed->id") }}'">Permission</button>
+            </td>
+          </tr>
+          @endforeach
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
             </div>
             <!-- /.row -->
         </div>

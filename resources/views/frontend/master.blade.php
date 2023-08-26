@@ -94,10 +94,10 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                      <a href="{{ url("blogs") }}" class="nav-link">Blogs </a>
+                      <a href="{{ url('blogs') }}" class="nav-link">Blogs </a>
                     </li>
                     <li class="nav-item">
-                      <a href="#" class="nav-link">Feed</a>
+                      <a href="{{ url('feed') }}" class="nav-link">Feed</a>
                     </li>
                     <li class="nav-item">
                       <a href="#" class="nav-link"> About Us </a>
